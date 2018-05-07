@@ -43,9 +43,9 @@ function trimmer($data){
 		die("Connection to database failed!");
 		}
 	//checking if the asked username already exists..
-	$sql="SELECT * FROM users WHERE us='$us_name'";
-	$result=$conn->query($sql);
-	if($result->num_rows>0){
+	//$sql="SELECT * FROM users WHERE us='$us_name'";
+	$result=mysqli_query($conn,"SELECT * FROM users WHERE uid='$us_name'");
+	if(!$result){
 			echo "Username already exists!";
 			die();}
 	$pww=password_hash($pw1,PASSWORD_DEFAULT);
@@ -58,7 +58,7 @@ function trimmer($data){
 	/* this does not run in php 7 versions... for older ones only
 	$us_name=mysql_escape_string($us_name);
 	$pww=mysql_escape_string($pww);*/
-	mysqli_query($conn,"INSERT INTO users (us,pw)
+	mysqli_query($conn,"INSERT INTO users (uid,pw)
 		VALUES ('$us_name','$pww')");
 	if(mysqli_affected_rows($conn)>0){
 		echo "Request Processed!";

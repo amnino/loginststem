@@ -8,7 +8,7 @@
 		}
 	$uid=trimmer($_POST['uid']);
 	$pwd=trimmer($_POST['pwd']);
-	if(empty($uid) or empty($uid)){
+	if(empty($uid) or empty($pwd)){
 		die("INVALID INPUT");
 		}
 	$servername="localhost";
@@ -20,7 +20,7 @@
 	if(!$conn){
 		die('SERVER FAULT');
 		}
-	$queryy=mysqli_query($conn,"SELECT * FROM users WHERE us='$uid'");
+	$queryy=mysqli_query($conn,"SELECT * FROM users WHERE uid='$uid'");
 	$count=mysqli_num_rows($queryy);
 	$result=mysqli_fetch_assoc($queryy);
 	//check id the username and password has been found...
